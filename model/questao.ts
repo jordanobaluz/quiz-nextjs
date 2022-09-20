@@ -37,4 +37,14 @@ export default class QuestaoModel {
         }
         return false
     }
+
+    ///retorno um objeto com os atributos e valores dos atributos
+    converterParaObjeto(){
+        return {
+            id: this.#id,
+            enuciado: this.#enuciado,
+            respostas: this.#respostas.map(resp => resp.paraObejeto()),
+            acertou: this.#acertou
+        }
+    }
 }
