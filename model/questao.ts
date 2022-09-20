@@ -1,7 +1,9 @@
+import RespostaModel from "./resposta"
+
 export default class QuestaoModel {
     #id: number
     #enuciado: string
-    #respostas: any[]
+    #respostas: RespostaModel[]
     #acertou: boolean
     // #respondida: boolean
 
@@ -29,7 +31,10 @@ export default class QuestaoModel {
     }
 
     get respondida(){
-        //fixme: implementar esse metodo
+        //percorre cada resposta para encontrar alguma revelada
+        for(let resposta of this.#respostas){
+            if(resposta.revelada) return true
+        }
         return false
     }
 }
