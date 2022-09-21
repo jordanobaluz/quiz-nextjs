@@ -1,3 +1,4 @@
+import { embaralhar } from "../functions/arrays"
 import RespostaModel from "./resposta"
 
 export default class QuestaoModel {
@@ -36,6 +37,12 @@ export default class QuestaoModel {
             if(resposta.revelada) return true
         }
         return false
+    }
+
+    //retornar uma nova instancia de QuestaoModel
+    embaralharRespostas(): QuestaoModel{
+        let respostasEmbaralhadas = embaralhar(this.#respostas)
+        return new QuestaoModel(this.#id, this.#enuciado, respostasEmbaralhadas, this.#acertou)
     }
 
     ///retorno um objeto com os atributos e valores dos atributos
