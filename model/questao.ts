@@ -39,6 +39,19 @@ export default class QuestaoModel {
         return false
     }
 
+    responderCom(indice: number): QuestaoModel {
+        const acertou = this.#respostas[indice]?.certa
+        //revela a reposta certa quando selecionar a resposta errada
+        const respostas = this.#respostas.map((resposta, i) => {
+            const respostaSelecionada = indice === i
+            const deveRevelar = respostaSelecionada || resposta.certa
+            return deveRevelar ? resposta.revelarReposta() : resposta
+        })
+
+        //retorna uma nova instancia da questão, aproveitando id e enuciado, porem irá retornar as respostas conforme a checagem se foi correta ou não e a flag se acertou ou não foi calculado e modificado
+        return new QuestaoModel(this.id, this.enuciado, respostas, acertou)
+    }
+
     //retornar uma nova instancia de QuestaoModel
     embaralharRespostas(): QuestaoModel{
         let respostasEmbaralhadas = embaralhar(this.#respostas)
@@ -51,6 +64,7 @@ export default class QuestaoModel {
             id: this.#id,
             enuciado: this.#enuciado,
             respostas: this.#respostas.map(resp => resp.paraObejeto()),
+            respondida: this.respondida,
             acertou: this.#acertou
         }
     }

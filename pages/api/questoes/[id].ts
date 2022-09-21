@@ -10,7 +10,9 @@ export default function handler(req, res) {
   //se tiver 1 tem questão, sem tamanho então sem questão
   if(unicaQuestaoOuNada.length === 1){
     const questaoSelecionada = unicaQuestaoOuNada[0].embaralharRespostas()
-    res.status(200).json(questaoSelecionada.converterParaObjeto())
+    
+    const obj = questaoSelecionada.converterParaObjeto()
+    res.status(200).json(obj)
   } else {
     //não existe o ID, por isso um 204 de sem conteudo
     res.status(204).send()
