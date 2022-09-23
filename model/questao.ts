@@ -45,7 +45,7 @@ export default class QuestaoModel {
         const respostas = this.#respostas.map((resposta, i) => {
             const respostaSelecionada = indice === i
             const deveRevelar = respostaSelecionada || resposta.certa
-            return deveRevelar ? resposta.revelarReposta() : resposta
+            return deveRevelar ? resposta.revelarReposta() : resposta //faz a logica de revelar todas as alternativas ou somente a clicada
         })
 
         //retorna uma nova instancia da questão, aproveitando id e enuciado, porem irá retornar as respostas conforme a checagem se foi correta ou não e a flag se acertou ou não foi calculado e modificado
