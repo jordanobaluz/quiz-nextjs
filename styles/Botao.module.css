@@ -7,8 +7,11 @@
     border: none;
     padding: 0.62rem 1.56rem;
     margin-top: 2.5rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
 }
 
+/*cresce o botão quando passar o mouse por cima*/
 .botao:hover {
-    border: 0.05rem solid;
+    transform: scale(1.1);
 }
