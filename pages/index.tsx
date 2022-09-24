@@ -77,15 +77,12 @@ export default function Home() {
     })
   }
 
-  return (
-    <div>
-      <Questionario
-        questao={questao}
-        ultima={idProximaPergunta() === undefined}
-        questaoRespondida={questaoRespondida}
-        irProximoPasso={irPraProximoPasso}
-      />
-
-    </div>
-  )
+  return questao ? (
+    <Questionario
+      questao={questao}
+      ultima={idProximaPergunta() === undefined}
+      questaoRespondida={questaoRespondida}
+      irProximoPasso={irPraProximoPasso}
+    />
+  ) : false
 }
