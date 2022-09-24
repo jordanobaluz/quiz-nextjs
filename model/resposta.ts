@@ -32,6 +32,11 @@ export default class RespostaModel{
         return new RespostaModel(this.#valor, this.#certa, true)
     }
 
+    //metodo de instancia, que retorna uma instancia de RespostaModel
+    static criarUsandoObjeto(obj: RespostaModel): RespostaModel{
+        return new RespostaModel(obj.valor, obj.certa, obj.revelada)
+    }
+
     paraObejeto(){
         return {
             valor: this.#valor,

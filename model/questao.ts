@@ -62,6 +62,13 @@ export default class QuestaoModel {
         return new QuestaoModel(this.#id, this.#enuciado, respostasEmbaralhadas, this.#acertou)
     }
 
+    //metodo de instancia, que retorna uma instancia de QuestaoModel
+    static criarUsandoObjeto(obj: QuestaoModel): QuestaoModel{
+        //cria um array com instancias de resposta model
+        const respostas = obj.respostas.map(resp => RespostaModel.criarUsandoObjeto(resp))
+        return new QuestaoModel(obj.id, obj.enuciado, respostas, obj.acertou)
+    }
+
     ///retorno um objeto com os atributos e valores dos atributos
     converterParaObjeto(){
         return {

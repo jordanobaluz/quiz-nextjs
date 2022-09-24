@@ -23,10 +23,12 @@ export default function Home() {
     setIdsDasQuestoes(idsDasQuestoes)
   }
 
+  //monta as questões trazendo os dados via API do banco de questões 
   async function carregarQuestao(idQuestao: number) {
     const resp = await fetch(`${BASE_URL}/questoes/${idQuestao}`)
     const json = await resp.json()
-
+    const novaQuestao = QuestaoModel.criarUsandoObjeto(json)
+    setQuestao(novaQuestao)
   }
 
   useEffect(() => {
