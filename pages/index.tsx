@@ -10,8 +10,34 @@ const questaoMock = new QuestaoModel(1, 'Melhor cor?', [
   RespostaModel.errada('Violeta'),
   RespostaModel.certa('Azul'),
 ])
+
+const BASE_URL = 'http://localhost:3000/api'
+
 export default function Home() {
-  const [questao, setQuestao] = useState(questaoMock)
+  const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
+  const [questao, setQuestao] = useState<QuestaoModel>(questaoMock)
+
+  async function carregarIdsQuestoes() {
+    const resp = await fetch(`${BASE_URL}/questionario`)
+    const idsDasQuestoes = await resp.json()
+    setIdsDasQuestoes(idsDasQuestoes)
+  }
+
+  async function carregarQuestao(idQuestao: number) {
+    const resp = await fetch(`${BASE_URL}/questoes/${idQuestao}`)
+    const json = await resp.json()
+
+  }
+
+  useEffect(() => {
+    carregarIdsQuestoes()
+  }, [])
+
+  //se for maior que zero tem questão e então chama o metodo carregar questões passando a primeira questão
+  useEffect(() => {
+    idsDasQuestoes.length > 0 && carregarQuestao(idsDasQuestoes[0])
+  }, [idsDasQuestoes])
+
   // const questaoRef = useRef<QuestaoModel>()
 
   //ira mudar a referencia da questao, atualizando para a ultima
