@@ -4,20 +4,29 @@
     width: 80%;
     height: 6.25em;
     margin: 0.5em;
-    
+    perspective: 1000px;
 }
 
 .conteudoResposta {
     position: relative;
     display: flex;
     flex: 1;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; /*sem essa propriedade o conteudo só gira, sem manter os styles*/
+}
+
+/*como estão no mesmo componente precisam estar juntas*/
+.respostaRevelada.conteudoResposta{
+    transform: rotateY(180deg);
 }
 
 .frente, .verso {
-    position: absolute; /*posição com relação ao conteudoResposta*/
+    position: absolute; /*posição com relação ao conteudoResposta e usa como eixo para rotação o centro da resposta*/
     display: flex;
     height: 100%;
     width: 100%;
+    -webkit-backface-visibility: hidden; /*mantem escondido a parte de tras*/
+    backface-visibility: hidden;
 }
 
 .frente {
@@ -26,6 +35,10 @@
     padding: 1em;
     color: #000;
     background-color: #fff;
+}
+
+.verso {
+    transform: rotateY(180deg);
 }
 
 .verso > div {
